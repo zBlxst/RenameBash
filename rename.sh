@@ -5,6 +5,11 @@ VFLAG=0
 command=""
 args=""
 
+usage() {
+    echo "Usage: $0 [-qv] <command> <args>..."
+    exit
+}
+
 while test "$#" -ge 1; do
     case $1 in 
         -q) 
@@ -16,11 +21,10 @@ while test "$#" -ge 1; do
             shift
             continue;;
         -h)
-            echo "Usage"
-            exit;;
+            usage;;
         -*)
             echo "Unkown option $1"
-            exit;;
+            usage;;
         *)
             if test -z "$command"; then
                 command=$1
